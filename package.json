@@ -1,0 +1,20 @@
+{
+  "name": "devicedna",
+  "version": "1.0.1",
+  "description": "building your own device fingerprinting library",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "device",
+    "fingerprinting",
+    "library",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "INDRESH BHARATI",
+  "license": "MIT License"
+}
