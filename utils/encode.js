@@ -1,3 +1,4 @@
 export const encodeText = (text) => {
-  return new TextEncoder().encode(text);
+  const encoder = new TextEncoder();
+  return encoder.encode(text);
 };

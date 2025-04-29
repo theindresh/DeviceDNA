@@ -1,6 +1,6 @@
 {
   "name": "devicedna",
-  "version": "1.0.6",
+  "version": "1.0.4",
   "description": "building your own device fingerprinting library",
   "main": "index.js",
   "type": "module",
@@ -18,21 +18,9 @@
   "keywords": [
     "device",
     "fingerprinting",
-    "device fingerprinting",
-    "device dna",
-    "device identification",
-    "device tracking",
-    "device recognition",
-    "device tracking library",
-    "device recognition library",
-    "device identification library",
-    "device tracking script",
-    "device recognition script",
-    "device identification script",
-    "device tracking code",
-    "device recognition code",
-    "device identification code",
-    "device tracking tool"
+    "library",
+    "javascript",
+    "nodejs"
   ],
   "author": "INDRESH BHARATI",
   "license": "MIT License",
