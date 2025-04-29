@@ -8,16 +8,15 @@ import { getFingerprint } from '@thumbmarkjs/thumbmarkjs';
  */
 export const getDeviceFingerprint = async () => {
   try {
-    debugger
     const fingerprintData = await collectFingerprintData();
     const rawFingerprint = await getFingerprint();
 
     const deviceId = await generateDeviceId(fingerprintData, rawFingerprint);
 
     return {
-      success : true,
-      status : 200,
-      message : 'Fingerprint generated successfully',
+      success: true,
+      status: 200,
+      message: 'Fingerprint generated successfully',
       data: {
         deviceId,
       },
