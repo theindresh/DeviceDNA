@@ -1,14 +1,20 @@
-export const collectData = () => {
+export async function collectFingerprintData() {
+  const plugins = Array.from(navigator.plugins).map(p => p.name);
+
   return {
     userAgent: navigator.userAgent,
     platform: navigator.platform,
     language: navigator.language,
-    languages: navigator.languages.join(','),
+    languages: navigator.languages,
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    screen: `${screen.width}x${screen.height}`,
+    screen: {
+      width: screen.width,
+      height: screen.height,
+    },
     colorDepth: screen.colorDepth,
     deviceMemory: navigator.deviceMemory || 'unknown',
     cpuCores: navigator.hardwareConcurrency || 'unknown',
-    touchSupport: 'ontouchstart' in window ? 'yes' : 'no',
+    touchSupport: 'ontouchstart' in window,
+    plugins,
   };
-};
+}

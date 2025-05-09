@@ -1,23 +1,39 @@
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { collectData } from './collectData.js';
 import { hashData } from './hashData.js';
 
-/**
- * Generates a stable, hashed device ID using fingerprint data and optional salt.
- * @param {Object} fingerprintData - Core fingerprint object (sorted internally).
- * @param {string} salt - A secondary fingerprint or identifier for stability.
- * @returns {Promise<string>} - The generated hash.
- */
-export const generateDeviceId = async (fingerprintData, getFingerprintData) => {
-  // Sort object keys and stringify to ensure consistent input
-  const stableData = Object.keys(fingerprintData)
-    .sort()
-    .reduce((acc, key) => {
-      acc[key] = fingerprintData[key];
-      return acc;
-    }, {});
+export const generateDeviceId = async () => {
+  const baseData = collectData();
 
-  // Concatenate stable fingerprint data and raw fingerprint
-  const inputString = JSON.stringify(stableData) + getFingerprintData;  // Always stringify the data
+  const fpInstance = await FingerprintJS.load();
+  const fpResult = await fpInstance.get();
 
-  // Generate the consistent hash for the fingerprint
-  return await hashData(inputString); // Generate the hash for the consistent fingerprint
+  const components = fpResult.components;
+
+  const fingerprint = {
+    userAgent: components.userAgent?.value || '',
+    language: components.language?.value || '',
+    languages: components.languages?.value?.join(',') || '',
+    timezone: components.timezone?.value || '',
+    screen: components.screen?.value 
+      ? `${components.screen.value.width}x${components.screen.value.height}` 
+      : '',
+    colorDepth: components.colorDepth?.value || '',
+    deviceMemory: components.deviceMemory?.value || '',
+    cpuCores: components.cpuCores?.value || '',
+    touchSupport: components.touchSupport?.value ? 'yes' : 'no',
+    canvas: components.canvas?.value || '',
+    audio: components.audio?.value || '',
+    webGLVendor: components.webGLVendor?.value || '',
+    webGLRenderer: components.webGLRenderer?.value || '',
+    devicePixelRatio: components.devicePixelRatio?.value || '',
+  };
+
+  const finalData = {
+    ...baseData,
+    ...fingerprint,
+  };
+
+  const deviceId = hashData(finalData);
+  return deviceId;
 };

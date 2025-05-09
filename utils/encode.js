@@ -1,4 +1,7 @@
-export const encodeText = (text) => {
-  const encoder = new TextEncoder();
-  return encoder.encode(text);
+export const encodeBase64 = (str) => {
+  return btoa(unescape(encodeURIComponent(str)));
+};
+
+export const decodeBase64 = (str) => {
+  return decodeURIComponent(escape(atob(str)));
 };

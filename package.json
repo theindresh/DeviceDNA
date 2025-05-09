@@ -1,6 +1,6 @@
 {
   "name": "devicedna",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "building your own device fingerprinting library",
   "main": "index.js",
   "type": "module",
@@ -25,6 +25,8 @@
   "author": "INDRESH BHARATI",
   "license": "MIT License",
   "dependencies": {
-    "@thumbmarkjs/thumbmarkjs": "^0.20.1"
+    "@fingerprintjs/fingerprintjs": "^4.6.2",
+    "@thumbmarkjs/thumbmarkjs": "^0.20.1",
+    "crypto-js": "^4.2.0"
   }
 }
